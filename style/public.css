@@ -1,0 +1,496 @@
+@media(max-width: 414px) {
+    .hide-in-phone {
+        display: none;
+    }
+}
+
+@media(min-width: 415px) {
+    .hide-in-web {
+        display: none;
+    }
+}
+
+html,
+body {
+    height: auto;
+    margin: 0;
+    font-family: 'Microsoft JhengHei';
+}
+
+#app {
+    max-width: 1920px;
+    max-height: 1080px;
+    height: 100%;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(../images/bg-img.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: white;
+}
+
+#header {
+    width: 100%;
+    height: 80px;
+    background-color: #3a3434;
+    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.4);
+    opacity: 0.8;
+    position: fixed;
+    z-index: 999;
+}
+
+#main {
+    width: 100%;
+    height: 930px;
+    padding-top: 80px;
+}
+
+#footer {
+    width: 100%;
+    height: 70px;
+    background-color: #3B3D4A;
+}
+
+.cprText {
+    padding: 0 10px;
+    margin: 0;
+    font-size: 12px;
+    line-height: 15px;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'Montserrat';
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.h-auto {
+    height: auto;
+}
+
+/* B4--------------------------------------- */
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex;
+}
+
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+
+.justify-content-start {
+    -ms-flex-pack: start !important;
+    justify-content: flex-start !important;
+}
+
+.justify-content-end {
+    -ms-flex-pack: end !important;
+    justify-content: flex-end !important;
+}
+
+.justify-content-between {
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+
+.justify-content-around {
+    -ms-flex-pack: distribute !important;
+    justify-content: space-around !important;
+}
+
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+.align-items-start {
+    -ms-flex-align: start !important;
+    align-items: flex-start !important;
+}
+
+.align-items-end {
+    -ms-flex-align: end !important;
+    align-items: flex-end !important;
+}
+
+.flex-column {
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+}
+
+.flex-row {
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+}
+
+/* ---------------------------------------- */
+
+.m-0 {
+    margin: 0;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-45 {
+    margin-top: 45px;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.ml-35 {
+    margin-left: 35px;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+.userCircleBorder {
+    background: linear-gradient(90deg, #FFFFFF 23.87%, rgba(255, 255, 255, 0) 62.58%), #FFFFFF;
+    border-radius: 40px;
+    padding: 5px 20px;
+    color: #51B8BF;
+}
+
+/* openModal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+.modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+.close_goOffWork:hover,
+.close_goOffWork:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    border-bottom: 1px solid #51B8BF;
+}
+
+.qus_goToWork {
+    width: 100%;
+    height: 105px;
+    background-color: #3B3D4A;
+    font-size: 36px;
+    border-radius: 20px;
+    letter-spacing: 0.2em;
+    margin-top: 22px;
+    margin-bottom: 23px;
+    padding: 40px;
+}
+
+.getYMD {
+    font-size: 48px;
+    color: white;
+}
+
+.getTime {
+    font-size: 36px;
+    color: #51B8BF;
+}
+
+#getTimeNow {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.correct_goWork {
+    width: 185px;
+    height: 185px;
+    background-color: #51B8BF;
+    border: 1px solid #51B8BF;
+    color: white;
+    border-radius: 20px;
+    color: white;
+    font-size: 36px;
+    letter-spacing: 0.09em;
+    line-height: 21px;
+    cursor: pointer;
+}
+
+.correct_goWork:hover {
+    background-color: white;
+    border: 1px solid #51B8BF;
+    color: #51B8BF;
+}
+
+.close_goWork {
+    width: 185px;
+    height: 185px;
+    background-color: white;
+    border: 1px solid #3B3D4A;
+    color: #3B3D4A;
+    border-radius: 20px;
+    font-size: 36px;
+    letter-spacing: 0.09em;
+    line-height: 21px;
+    cursor: pointer;
+}
+
+.close_goWork:hover {
+    background-color: #3B3D4A;
+    border: 1px solid #3B3D4A;
+    color: white;
+}
+
+
+/* phone */
+.qus_goToWork_phone {
+    width: 100%;
+    /* height: 105px; */
+    background-color: #3B3D4A;
+    font-size: 18px;
+    border-radius: 20px;
+    letter-spacing: 0.2em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px 0px;
+}
+
+.getYMD_phone {
+    font-size: 24px;
+    color: white;
+}
+
+.getTime_phone {
+    font-size: 18px;
+    color: #51B8BF;
+}
+
+#getTimeNow_phone {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#getTimeNow_goOffWork_phone {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.correct_goWork_phone {
+    width: 100%;
+    height: 60px;
+    background-color: #51B8BF;
+    border: 1px solid #51B8BF;
+    color: white;
+    border-radius: 20px;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 0.09em;
+    line-height: 21px;
+    cursor: pointer;
+}
+
+.close_goWork_phone {
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    border: 1px solid #3B3D4A;
+    color: #3B3D4A;
+    border-radius: 20px;
+    font-size: 18px;
+    letter-spacing: 0.09em;
+    line-height: 21px;
+    cursor: pointer;
+}
+
+@-webkit-keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.notice {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.notice-modal {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10px;
+    margin-top: 15%;
+    border: 1px solid #888;
+    width: 380px;
+    border-radius: 8px;
+    animation-name: showNotice;
+    animation-duration: 0.3s;
+}
+
+.notice-modal-footer button {
+    height: 40px;
+    border: 1px solid #51B8BF;
+    background-color: white;
+    color: #51B8BF;
+    font-size: 24px;
+    letter-spacing: 0.09em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.notice-modal-footer button:hover {
+    border: 0;
+    background-color: #51B8BF;
+    color: white;
+}
+
+.notice-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.notice-close:hover,
+.notice-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes showNotice {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/public.css" type="text/css" />
+    <link rel="stylesheet" href="style/forWeb.css" type="text/css" />
+    <link rel="stylesheet" href="style/forPhone.css" type="text/css" />
+    <title>靈糧堂打卡</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="bg-img">
+            <div id="header">
+                <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                    <img src="images/logo.png" alt="靈糧堂">
+                </div>
+            </div>
+
+            <div id="main">
+                <div id="test"></div>
+                <div class="w-100 d-flex align-items-center justify-content-center">
+                    <!-- Web -->
+                    <div class="hide-in-phone mainCard" id="mainCard">
+                        <!-- header -->
+                        <div class="w-100 text-center">
+                            <span class="timeStyle" id="timeStyle"></span>
+                        </div>
+                        <div class="w-100 align-items-center justify-content-between" id="timeStyle_work"
+                            style="display: none;">
+                            <div class="nameLabel d-flex align-items-center">
+                                <span class="nameLabel_circle d-flex align-items-center justify-content-center">
+                                    <img src="images/icon/PNG/personIcon.png" alt="" width="35px">
+                                </span>
+                                <p class="nameLabel_text" id="nameLabel"></p>
+                            </div>
+                            <span class="timeStyle_work" id="workDate"></span>
+                        </div>
+                        <!-- tab -->
+                        <div class="tabs-container mt-10">
+                            <div class="tabs-pages">
+                                <button class="tablinks d-flex align-items-center justify-content-center"
+                                    id="defaultOpen" onclick="openTab(event, 'goToWork', 1)">
+                                    <img id="goToWork_choose" src="images/icon/PNG/上班選單.png" alt="" width="48px">
+                                    <img id="goToWork_notyet" src="images/icon/PNG/上班未選.png" alt="" width="48px">
+                                    <p class="m-0 ml-20">上班</p>
+                                </button>
+                                <button class="tablinks d-flex align-items-center justify-content-center"
+                                    id="secondOpen" onclick="openTab(event, 'goOffWork', 2)">
+                                    <img id="goOffWork_choose" src="images/icon/PNG/下班未選.png" alt="" width="48px">
+                                    <img id="goOffWork_notyet" src="images/icon/PNG/下班選單.png" alt="" width="48px">
+                                    <p class="m-0 ml-20">下班</p>
+                                </button>
+                            </div>
+                            <div class="tabs-contents">
+                                <!-- goToWork -->
+                                <div class="tab-c" id="goToWork">
+                                    <div class="inner-content d-flex align-items-center flex-column">
+                                        <div class="w-100 mb-20">
+                                            <select class="w-100 selectStyle" name="chooseLocal_goToWork"
+                                                id="chooseLocal_goToWork">
+                                                <option value="">上班地點</option>
+                                                <option value="Shilin">士林靈糧堂</option>
+                                                <option value="Taipei">臺北靈糧堂</option>
+                                                <option value="Songjiang">松江靈糧福音中心</option>
+                                                <option value="Xinzhuang">新莊佳音靈糧堂</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-20">
+                                            <span><img class="earIcon" src="images/icon/PNG/耳溫.png" alt=""
+                                                    width="48px"></span>
+                                            <input class="w-100 text-center input_temp" id="input_temp" type="number"
+                                                placeholder="00.0" min="35.0" max="42.0" step="0.1" title="您已不在正常體溫範圍"
+                                                oninput="if(value.length>4)value=value.slice(0,4)">
+                                            <span>
+                                                <p class="m-0 tempText">℃</p>
+                                            </span>
+                                        </div>
+                                        <div class="w-100 mt-20">
+                                            <input class="w-100 text-center input_cardNum" id="input_cardNum"
+                                                type="text" maxlength="10" placeholder="請輸入您的卡號(最多10碼)"
+                                                onkeydown="if (event.keyCode == 13){openModal_goToWork()}"
+                                                onkeydown="if (event.keyCode == 13){openModal_goToWork()}">
+                                        </div>
+                                        <div class="w-100 d-flex align-items-center justify-content-between mt-15">
+                                            <button class="cardButton" onclick="reset_goToWork()">重設</button>
+                                            <button class="cardButton" onclick="openModal_goToWork()">確認</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- goOffWork -->
+                                <div class="tab-c" id="goOffWork">
+                                    <div class="inner-content d-flex align-items-center flex-column">
+                                        <div class="w-100 mb-20">
+                                            <select class="w-100 selectStyle" name="chooseLocal_goOffWork"
+                                                id="chooseLocal_goOffWork">
+                                                <option value="">下班地點</option>
+                                                <option value="Shilin">士林靈糧堂</option>
+                                                <option value="Taipei">臺北靈糧堂</option>
+                                                <option value="Songjiang">松江靈糧福音中心</option>
+                                                <option value="Xinzhuang">新莊佳音靈糧堂</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-20">
+                                            <span><img class="earIcon" src="images/icon/PNG/耳溫.png" alt=""
+                                                    width="48px"></span>
+                                            <input class="w-100 text-center input_temp" id="input_temp_goOff"
+                                                type="number" placeholder="00.0" min="35.0" max="42.0" step="0.1"
+                                                title="您已不在正常體溫範圍" oninput="if(value.length>4)value=value.slice(0,4)">
+                                            <span>
+                                                <p class="m-0 tempText">℃</p>
+                                            </span>
+                                        </div>
+                                        <div class="w-100 mt-20">
+                                            <input class="w-100 text-center input_cardNum" id="input_cardNum_goOff"
+                                                type="text" maxlength="10" placeholder="請輸入您的卡號(最多10碼)"
+                                                onkeydown="if (event.keyCode == 13){openModal_goOffWork()}">
+                                        </div>
+                                        <div class="w-100 d-flex align-items-center justify-content-between mt-15">
+                                            <button class="cardButton" onclick="reset_goOffWork()">重設</button>
+                                            <button class="cardButton" onclick="openModal_goOffWork()">確認</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div id="mainCard--phone" class="hide-in-web mainCard--phone">
+                        <div class="w-100 text-center">
+                            <span class="timeStyle_phone" id="timeStyle_phone"></span>
+                        </div>
+                        <div class="w-100 align-items-center justify-content-between" id="timeStyle_work_phone"
+                            style="display: none;">
+                            <div class="nameLabel_phone d-flex align-items-center">
+                                <span class="nameLabel_circle_phone d-flex align-items-center justify-content-center">
+                                    <img src="images/icon/PNG/personIcon.png" alt="" width="35px">
+                                </span>
+                                <p class="nameLabel_text_phone" id="nameLabel_phone"></p>
+                            </div>
+                            <span class="timeStyle_work_phone" id="workDate_phone"></span>
+                        </div>
+
+                        <div class="tabs-container_phone">
+                            <div class="tabs-pages_phone">
+                                <button class="tablinks_phone d-flex align-items-center justify-content-center"
+                                    id="defaultOpen_phone" onclick="openTab_phone(event, 'goToWork', 1)">
+                                    <img id="goToWork_choose_phone" src="images/icon/PNG/上班選單.png" alt="" width="32px">
+                                    <img id="goToWork_notyet_phone" src="images/icon/PNG/上班未選.png" alt="" width="32px">
+                                    <p class="m-0 ml-20">上班</p>
+                                </button>
+                                <button class="tablinks_phone d-flex align-items-center justify-content-center"
+                                    id="secondOpen_phone" onclick="openTab_phone(event, 'goOffWork', 2)">
+                                    <img id="goOffWork_choose_phone" src="images/icon/PNG/下班未選.png" alt="" width="32px">
+                                    <img id="goOffWork_notyet_phone" src="images/icon/PNG/下班選單.png" alt="" width="32px">
+                                    <p class="m-0 ml-20">下班</p>
+                                </button>
+                            </div>
+                            <div class="tabs-contents_phone">
+                                <!-- goToWork -->
+                                <div class="tab-c_phone" id="goToWork_phone">
+                                    <div class="inner-content_phone d-flex align-items-center flex-column">
+                                        <div class="w-100 mb-20">
+                                            <select class="w-100 selectStyle_phone" name="chooseLocal_goToWork"
+                                                id="chooseLocal_goToWork_phone">
+                                                <option value="">上班地點</option>
+                                                <option value="Shilin">士林靈糧堂</option>
+                                                <option value="Taipei">臺北靈糧堂</option>
+                                                <option value="Songjiang">松江靈糧福音中心</option>
+                                                <option value="Xinzhuang">新莊佳音靈糧堂</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-20">
+                                            <span><img class="earIcon_phone" src="images/icon/PNG/耳溫.png" alt=""
+                                                    width="48px"></span>
+                                            <input class="w-100 text-center input_temp_phone" id="input_temp_phone"
+                                                type="number" placeholder="00.0" min="35.0" max="42.0" step="0.1"
+                                                title="您已不在正常體溫範圍" oninput="if(value.length>4)value=value.slice(0,4)">
+                                            <span>
+                                                <p class="m-0 tempText_phone">℃</p>
+                                            </span>
+                                        </div>
+                                        <div class="w-100">
+                                            <input class="w-100 text-center input_cardNum_phone"
+                                                id="input_cardNum_phone" type="text" maxlength="10"
+                                                placeholder="請輸入您的卡號(最多10碼)"
+                                                onkeydown="if (event.keyCode == 13){openModal_goToWork_phone()}">
+                                        </div>
+                                        <div class="w-100 d-flex align-items-center justify-content-between mt-15">
+                                            <button class="cardButton_phone"
+                                                onclick="reset_goToWork_phone()">重設</button>
+                                            <button class="cardButton_phone"
+                                                onclick="openModal_goToWork_phone()">確認</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- goOffWork -->
+                                <div class="tab-c_phone" id="goOffWork_phone">
+                                    <div class="inner-content_phone d-flex align-items-center flex-column">
+                                        <div class="w-100 mb-20">
+                                            <select class="w-100 selectStyle_phone" name="chooseLocal_goOffWork"
+                                                id="chooseLocal_goOffWork_phone">
+                                                <option value="">下班地點</option>
+                                                <option value="Shilin">士林靈糧堂</option>
+                                                <option value="Taipei">臺北靈糧堂</option>
+                                                <option value="Songjiang">松江靈糧福音中心</option>
+                                                <option value="Xinzhuang">新莊佳音靈糧堂</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-20">
+                                            <span><img class="earIcon_phone" src="images/icon/PNG/耳溫.png" alt=""
+                                                    width="48px"></span>
+                                            <input class="w-100 text-center input_temp_phone"
+                                                id="input_temp_goOff_phone" type="number" placeholder="00.0"
+                                                oninput="if(value.length>4)value=value.slice(0,4)">
+                                            <span>
+                                                <p class="m-0 tempText_phone">℃</p>
+                                            </span>
+                                        </div>
+                                        <div class="w-100">
+                                            <input class="w-100 text-center input_cardNum_phone"
+                                                id="input_cardNum_goOff_phone" type="text" maxlength="10"
+                                                placeholder="請輸入您的卡號(最多10碼)"
+                                                onkeydown="if (event.keyCode == 13){openModal_goOffWork_phone()}">
+                                        </div>
+                                        <div class="w-100 d-flex align-items-center justify-content-between mt-15">
+                                            <button class="cardButton_phone"
+                                                onclick="reset_goOffWork_phone()">重設</button>
+                                            <button class="cardButton_phone"
+                                                onclick="openModal_goOffWork_phone()">確認</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                <p class="cprText">COPYRIGHT © 2018 BREAD OF LIFE CHRISTIAN CHURCH IN SHILIN, ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="w-100 d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center" style="width: 1360px;">
+                        <div class="d-flex align-items-center justify-content-around flex-row qus_goToWork">
+                            <div class="d-flex align-items-center justify-content-center flex-row" style="width: 40%;">
+                                <div class="d-flex align-items-center justify-content-center flex-column getYMD">
+                                    <div id="getYear" style="letter-spacing: 0.3em;"></div>
+                                    <div id="getMonthDate"></div>
+                                </div>
+                                <div class="d-flex align-items-center" style="padding: 0 40px 0 40px;">
+                                    <img src="images/icon/PNG/straightLine.png" alt="">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center flex-column getTime">
+                                    <div>現在時間</div>
+                                    <div id="getTimeNow"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center flex-row" style="width: 60%;">
+                                <div>
+                                    <img src="images/icon/personIcon-circle.png" alt="">
+                                </div>
+                                <div class="d-flex align-items-center flex-column text-left ml-20">
+                                    <div class="w-100">
+                                        <span class="userCircleBorder" id="showUsername"></span>
+                                    </div>
+                                    <div class="w-100 mt-10" style="color: white;">上班卡打卡成功</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal_phone" class="modal">
+        <div class="modal-content">
+            <div class="modal-body text-center" style="padding: 0 15px;">
+                <div class="w-100 d-flex align-items-center justify-content-center flex-column">
+                    <div class="w-100">
+                        <div
+                            class="w-100 d-flex align-items-center justify-content-around flex-column qus_goToWork_phone">
+                            <div class="w-100 d-flex align-items-center justify-content-around flex-row">
+                                <div class="d-flex align-items-center justify-content-center getYMD_phone">
+                                    <div id="getYear_phone" style="letter-spacing: 0.3em;"></div>-
+                                    <div id="getMonthDate_phone"></div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="images/icon/PNG/straightLine.png" alt="" width="3px" height="50px">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center flex-column getTime_phone">
+                                    <div>現在時間</div>
+                                    <div id="getTimeNow_phone"></div>
+                                </div>
+                            </div>
+                            <div class="w-100 d-flex align-items-center justify-content-center mt-10"
+                                style="font-size: 24px;font-weight: bolder;">
+                                <div>
+                                    <img src="images/icon/personIcon-circle.png" width="96px" alt="">
+                                </div>
+                                <div class="d-flex flex-column align-items-center justify-content-start ml-20">
+                                    <div class="w-100 text-left">
+                                        <span class="userCircleBorder" id="showUsername_phone"></span>
+                                    </div>
+                                    <div class="w-100 mt-10" style="color: white;">上班卡打卡成功</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal_goOffWork" class="modal">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="w-100 d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center" style="width: 1360px;">
+                        <div class="d-flex align-items-center justify-content-around flex-row qus_goToWork">
+                            <div class="d-flex align-items-center justify-content-center flex-row" style="width: 40%;">
+                                <div class="d-flex align-items-center justify-content-center flex-column getYMD">
+                                    <div id="getYear_goOffWork" style="letter-spacing: 0.3em;"></div>
+                                    <div id="getMonthDate_goOffWork"></div>
+                                </div>
+                                <div class="d-flex align-items-center" style="padding: 0 40px 0 40px;">
+                                    <img src="images/icon/PNG/straightLine.png" alt="">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center flex-column getTime">
+                                    <div>現在時間</div>
+                                    <div id="getTimeNow_goOffWork"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center flex-row" style="width: 60%;">
+                                <div>
+                                    <img src="images/icon/personIcon-circle.png" alt="">
+                                </div>
+                                <div class="d-flex align-items-center flex-column text-left ml-20">
+                                    <div class="w-100">
+                                        <span class="userCircleBorder" id="showUsername_goOffWork"></span>
+                                    </div>
+                                    <div class="w-100 mt-10" style="color: white;">下班卡打卡成功</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal_goOffWork_phone" class="modal">
+        <div class="modal-content">
+            <div class="modal-body text-center" style="padding: 0 15px;">
+                <div class="w-100 d-flex align-items-center justify-content-center flex-column">
+                    <div class="w-100">
+                        <div
+                            class="w-100 d-flex align-items-center justify-content-around flex-column qus_goToWork_phone">
+                            <div class="w-100 d-flex align-items-center justify-content-around flex-row">
+                                <div class="d-flex align-items-center justify-content-center getYMD_phone">
+                                    <div id="getYear_goOffWork_phone" style="letter-spacing: 0.3em;"></div>-
+                                    <div id="getMonthDate_goOffWork_phone"></div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <img src="images/icon/PNG/straightLine.png" alt="" width="3px" height="50px">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center flex-column getTime_phone">
+                                    <div>現在時間</div>
+                                    <div id="getTimeNow_goOffWork_phone"></div>
+                                </div>
+                            </div>
+                            <div class="w-100 d-flex align-items-center justify-content-center mt-10"
+                                style="font-size: 24px;font-weight: bolder;">
+                                <div>
+                                    <img src="images/icon/personIcon-circle.png" width="96px" alt="">
+                                </div>
+                                <div class="d-flex flex-column align-items-center justify-content-start ml-20">
+                                    <div class="w-100 text-left">
+                                        <span class="userCircleBorder" id="showUsername_goOffWork_phone"></span>
+                                    </div>
+                                    <div class="w-100 mt-10" style="color: white;">下班卡打卡成功</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="notice" class="notice">
+        <div class="notice-modal">
+            <div class="notice-modal-content text-center">
+                <h2>請重新檢查並確實填寫欄位！</h2>
+            </div>
+            <div class="notice-modal-footer">
+                <button class="w-100" onclick="closeNotice()">確認</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="index.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        // web__goToWork
+        function openModal_goToWork() {
+            if (!cardNum_goToWork.value || !temp_goToWork.value || !chooseLocal_goToWork.value) {
+                document.getElementById("notice").style.display = "block";
+                document.getElementById("notice").style.zIndex = 500;
+            } else {
+                document.getElementById("myModal").style.display = "block";
+                document.getElementById("myModal").style.zIndex = 500;
+                setTimeout(function () {
+                    document.getElementById("myModal").style.display = "none";
+                    document.getElementById("myModal").style.zIndex = "-1";
+                    reset_goToWork();
+                }, 3000);
+            }
+        }
+        // web__goOffWork
+        function openModal_goOffWork() {
+            if (!cardNum_goOffWork.value || !temp_goOffWork.value || !chooseLocal_goOffWork.value) {
+                document.getElementById("notice").style.display = "block";
+                document.getElementById("notice").style.zIndex = 500;
+            } else {
+                document.getElementById("myModal_goOffWork").style.display = "block";
+                document.getElementById("myModal_goOffWork").style.zIndex = 500;
+                setTimeout(function () {
+                    document.getElementById("myModal_goOffWork").style.display = "none";
+                    document.getElementById("myModal_goOffWork").style.zIndex = "-1";
+                    reset_goOffWork();
+                }, 3000);
+            }
+        }
+
+        // phone__goToWork
+        function openModal_goToWork_phone() {
+            if (!cardNum_goToWork_phone.value || !temp_goToWork_phone.value || !chooseLocal_goToWork_phone.value) {
+                document.getElementById("notice").style.display = "block";
+                document.getElementById("notice").style.zIndex = 500;
+            } else {
+                document.getElementById("myModal_phone").style.display = "block";
+                document.getElementById("myModal_phone").style.zIndex = 500;
+                setTimeout(function () {
+                    document.getElementById("myModal_phone").style.display = "none";
+                    document.getElementById("myModal_phone").style.zIndex = "-1";
+                    reset_goToWork_phone();
+                }, 3000);
+            }
+        }
+        // phone__goOffWork
+        function openModal_goOffWork_phone() {
+            if (!cardNum_goOffWork_phone.value || !temp_goOffWork_phone.value || !chooseLocal_goOffWork_phone.value) {
+                document.getElementById("notice").style.display = "block";
+                document.getElementById("notice").style.zIndex = 500;
+            } else {
+                document.getElementById("myModal_goOffWork_phone").style.display = "block";
+                document.getElementById("myModal_goOffWork_phone").style.zIndex = 500;
+                setTimeout(function () {
+                    document.getElementById("myModal_goOffWork_phone").style.display = "none";
+                    document.getElementById("myModal_goOffWork_phone").style.zIndex = "-1";
+                    reset_goOffWork_phone();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+
+</html>
