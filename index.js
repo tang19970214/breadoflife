@@ -32,7 +32,6 @@ var rightCardDate = getDateTime.getFullYear() + "-" + getM + "-" + getD;
 var workTime = getHr + ":" + getMin;
 var completeTime = rightCardDate + " " + workTime;
 
-
 // ----------------------
 function closeNotice() {
     document.getElementById("notice").style.display = "none";
